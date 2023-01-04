@@ -1,9 +1,8 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React from 'react';
+import { FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import { RootStackParams } from '../../../App';
-import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Container, Fab, Logo, Space, Stack, Todo } from '../../components';
+import { Fab, Logo, Space, Todo } from '../../components';
 import { useTypedSelector } from '../../store';
 import { theme } from '../../theme';
 
@@ -24,6 +23,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                 renderItem={(item) => <Todo todo={item.item} i={item.index} />}
                 contentContainerStyle={{ paddingBottom: 200 }}
             />
+
             <Fab onPress={handleAddTodo} />
         </SafeAreaView>
     );

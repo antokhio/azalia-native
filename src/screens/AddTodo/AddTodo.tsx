@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 24,
         fontFamily: theme.typography.fontFamily,
+        paddingHorizontal: 12,
         backgroundColor: '#FAFAFE',
         borderRadius: 8,
         elevation: 3,
