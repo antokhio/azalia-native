@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParams } from '../../../App';
 import { useTypedDispatch } from '../../store';
@@ -29,7 +30,7 @@ export const AddTodo: React.FC<AddTodoProps> = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.screen}>
-            <TextInput value={value} style={styles.input} onChangeText={setValue} />
+            <TextInput underlineStyle={{display:'none'}} value={value} style={styles.input} onChangeText={setValue} />
             <Pressable
                 style={({ pressed }) => [
                     styles.button,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     screen: {
         marginHorizontal: theme.margins,
         minHeight: '100%',
-        display: 'flex',
+        flex:1,
         justifyContent: 'center',
         alignItems: 'stretch',
         backgroundColor: theme.colors.background,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 8,
+        paddingVertical: 12,
         borderRadius: 8,
         elevation: 3,
         backgroundColor: theme.colors.primary,
@@ -72,9 +73,11 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 24,
         fontFamily: theme.typography.fontFamily,
-        paddingHorizontal: 12,
         backgroundColor: '#FAFAFE',
-        borderRadius: 8,
+        borderTopLeftRadius:theme.borderRadius,
+        borderTopRightRadius:12,
+        borderBottomLeftRadius:12,
+        borderBottomRightRadius:12,
         elevation: 3,
         marginVertical: 8,
     },

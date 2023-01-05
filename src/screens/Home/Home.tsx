@@ -15,9 +15,13 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
     const todos = useTypedSelector((state) => state.todos);
     return (
         <SafeAreaView style={styles.screen}>
-            <Space height={32} />
-            <Logo />
             <FlatList
+                ListHeaderComponent={
+                    <>
+                        <Space height={32} />
+                        <Logo style={styles.logo} />
+                    </>
+                }
                 style={styles.todos}
                 data={todos}
                 renderItem={(item) => <Todo todo={item.item} i={item.index} />}
@@ -32,6 +36,9 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
     screen: {
         height: '100%',
+    },
+    logo: {
+        marginVertical: theme.margins,
     },
     todos: {
         marginTop: theme.margins,

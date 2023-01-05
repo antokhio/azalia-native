@@ -13,6 +13,7 @@ export const theme = {
         fontWeight: '400',
     },
     margins: 24,
+    borderRadius:12
 };
 
 export type ThemeProps = typeof theme;

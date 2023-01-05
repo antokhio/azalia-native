@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import { Animated, StyleSheet, Text } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { Checkbox } from 'react-native-paper';
 import { useTypedDispatch } from '../../store';
-import { Todo as TodoItem, updateTodo, deleteTodo } from '../../store/slices';
+import { deleteTodo, Todo as TodoItem, updateTodo } from '../../store/slices';
 import { theme } from '../../theme';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 interface TodoProps {
     todo: TodoItem;
@@ -55,7 +55,7 @@ export const Todo: React.FC<TodoProps> = ({ todo, i }) => {
             overshootRight={false}
         >
             <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-                <Checkbox
+                <Checkbox.Android
                     color={theme.colors.primary}
                     status={todo.completedAt !== null ? 'checked' : 'unchecked'}
                     onPress={handleCompleted}
@@ -65,6 +65,7 @@ export const Todo: React.FC<TodoProps> = ({ todo, i }) => {
                         styles.text,
                         {
                             textDecorationLine: todo.completedAt ? 'line-through' : 'none',
+                            opacity: todo.completedAt ? 0.5 : 1.0
                         },
                     ]}
                 >
@@ -79,17 +80,18 @@ const styles = StyleSheet.create({
     container: {
         marginVertical: 8,
         marginHorizontal: theme.margins,
-        padding: 4,
+        padding: 8,
+        paddingVertical: 12,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#FAFAFE',
         elevation: 6,
-        borderRadius: 8,
+        borderRadius: theme.borderRadius,
     },
     text: {
         flex: 1,
-        marginLeft: 12,
+        marginLeft: 8,
         fontFamily: theme.typography.fontFamily,
         fontSize: 24,
     },

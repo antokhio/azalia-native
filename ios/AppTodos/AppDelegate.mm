@@ -57,6 +57,39 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  static Splash *splash = [[Splash alloc] init];
+
+  [splash createSplashView:self.window];
+  [splash setBackgroundColor:@"E5E5E5"];
+  [splash setSplashHideAnimation:SPLASH_SLIDE_RIGHT];
+  [splash setSplashHideDelay:100];
+
+  AnimatedObject *logoimage = [[AnimatedObject alloc] initImage:@"logo" width:screenWidth*0.7 height:screenHeight*0.6 ];
+  [logoimage setPositionX:(float) screenWidth/2-(screenWidth*0.7)/2];
+  [logoimage setPositionY:(float) 0];
+  [logoimage setVisibility:(bool) true];
+  [logoimage setScaleType:(int) FIT_CENTER];
+ 
+  [logoimage addToSplash];
+
+  AnimatedObject *image1 = [[AnimatedObject alloc] initImage:@"seg" width:screenWidth*0.1 height:screenHeight*0.1 ];
+  [image1 setPositionX:(float) screenWidth/2-(screenWidth*0.1)/2];
+  [image1 setPositionY:(float) screenHeight/2-(screenHeight*0.1)/2];
+  [image1 setVisibility:(bool) true];
+  [image1 setScaleType:(int) FIT_CENTER];
+
+  [image1 addToSplash];
+
+  ObjectAnimation *image1Animation = [[ObjectAnimation alloc] initimage:image1 animationtype:ROTATE animationDuration:600 rotateDegree:360];
+  SingleAnimation *sa1 = [[SingleAnimation alloc] init:image1Animation priority:1];
+  ObjectAnimation *image2Animation = [[ObjectAnimation alloc] initimage:image1 animationtype:ROTATE animationDuration:600 rotateDegree:360];
+  SingleAnimation *sa2 = [[SingleAnimation alloc] init:image2Animation priority:2];
+  ObjectAnimation *image3Animation = [[ObjectAnimation alloc] initimage:image1 animationtype:ROTATE animationDuration:600 rotateDegree:360];
+  SingleAnimation *sa3 = [[SingleAnimation alloc] init:image3Animation priority:3]; 
+
+  [splash splashShow];
+
   return YES;
 }
 
