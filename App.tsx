@@ -34,7 +34,7 @@ const App = () => {
                             }}
                         >
                             <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
-                            <Stack.Screen name='AddTodo' component={AddTodo} />
+                            <Stack.Screen name='AddTodo' options={{headerTitle:''}} component={AddTodo} />
                         </Stack.Navigator>
                     </GestureHandlerRootView>
                 </NavigationContainer>

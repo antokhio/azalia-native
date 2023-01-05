@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { FlatList, SafeAreaView, StyleSheet } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
 import { RootStackParams } from '../../../App';
 import { Fab, Logo, Space, Todo } from '../../components';
 import { useTypedSelector } from '../../store';
@@ -19,9 +19,10 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                 ListHeaderComponent={
                     <>
                         <Space height={32} />
-                        <Logo style={styles.logo} />
+                        <Logo />
                     </>
                 }
+                ListHeaderComponentStyle={styles.header}
                 style={styles.todos}
                 data={todos}
                 renderItem={(item) => <Todo todo={item.item} i={item.index} />}
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
     screen: {
         height: '100%',
     },
-    logo: {
-        marginVertical: theme.margins,
+    header: {
+        margin: theme.margins,
     },
     todos: {
         marginTop: theme.margins,
